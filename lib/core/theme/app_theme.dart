@@ -7,21 +7,21 @@ class AppTheme {
   static const Color textPrimary = Color(0xFFFFFFFF);
   static const Color textSecondary = Color(0xFFB3B3B3);
 
-  // Quadrant 1: High Energy / Social (Red/Pink)
-  static const Color q1Start = Color(0xFFFF512F);
-  static const Color q1End = Color(0xFFDD2476);
+  // Quadrant 1: High Energy / Social ("The Hype") -> Warm Yellow to Solar Orange
+  static const Color q1Start = Color(0xFFFFD05C);
+  static const Color q1End = Color(0xFFFF6B35);
 
-  // Quadrant 2: High Energy / Private (Yellow/Green/Gold)
-  static const Color q2Start = Color(0xFFF09819);
-  static const Color q2End = Color(0xFFEDDE5D);
+  // Quadrant 2: High Energy / Focus ("The Grind") -> Electric Red to Intense Pink
+  static const Color q2Start = Color(0xFFFF4B4B);
+  static const Color q2End = Color(0xFFFF9E9E);
 
-  // Quadrant 3: Low Energy / Social (Blue/Purple)
-  static const Color q3Start = Color(0xFF4776E6);
-  static const Color q3End = Color(0xFF8E54E9);
+  // Quadrant 3: Low Energy / Restoration ("The Recharge") -> Mint Green to Teal
+  static const Color q3Start = Color(0xFF4ADE80);
+  static const Color q3End = Color(0xFF2DD4BF);
 
-  // Quadrant 4: Low Energy / Private (Grey/Muted)
-  static const Color q4Start = Color(0xFF232526);
-  static const Color q4End = Color(0xFF414345);
+  // Quadrant 4: Low Energy / Passive ("The Idle") -> Soft Blue to Periwinkle
+  static const Color q4Start = Color(0xFF60A5FA);
+  static const Color q4End = Color(0xFF818CF8);
 
   static ThemeData get theme {
     return ThemeData(
@@ -31,7 +31,6 @@ class AppTheme {
       colorScheme: const ColorScheme.dark(
         primary: textPrimary,
         surface: surface,
-        background: background,
         onSurface: textPrimary,
       ),
       textTheme: GoogleFonts.spaceGroteskTextTheme(

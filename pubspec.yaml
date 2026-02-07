@@ -41,6 +41,8 @@ dependencies:
   google_fonts: ^8.0.1
   flutter_svg: ^2.2.3
   universal_html: ^2.3.0
+  flutter_animate: ^4.5.2
+  heroicons: ^0.11.0
 
 dev_dependencies:
   flutter_test:

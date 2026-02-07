@@ -5,6 +5,7 @@ import 'package:tracker_pwa/core/theme/app_theme.dart';
 import 'package:tracker_pwa/features/auth/auth_provider.dart';
 import 'package:tracker_pwa/features/auth/login_screen.dart';
 import 'package:tracker_pwa/features/home/home_screen.dart';
+import 'package:tracker_pwa/features/activity/activity_select_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -50,6 +51,17 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/home',
         builder: (context, state) => const HomeScreen(),
+      ),
+      GoRoute(
+        path: '/activity-select',
+        builder: (context, state) {
+          final extras = state.extra as Map<String, dynamic>;
+          return ActivitySelectScreen(
+            category: extras['category'],
+            startColor: extras['startColor'],
+            endColor: extras['endColor'],
+          );
+        },
       ),
     ],
   );
