@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Liquid Glass Landing Page</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3030e8",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111121",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom styles for organic shapes and glassmorphism */
+        .glass-blob {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                inset 0 0 20px rgba(255, 255, 255, 0.1),
+                0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .blob-blue {
+            background: radial-gradient(circle at 30% 30%, rgba(48, 48, 232, 0.4), rgba(48, 48, 232, 0.1) 60%, transparent 80%), rgba(255, 255, 255, 0.03);
+            box-shadow: inset 0 0 20px rgba(48, 48, 232, 0.2), 0 20px 40px rgba(48, 48, 232, 0.15);
+            border-color: rgba(48, 48, 232, 0.3);
+        }
+
+        .blob-orange {
+            background: radial-gradient(circle at 70% 20%, rgba(255, 138, 76, 0.4), rgba(255, 138, 76, 0.1) 60%, transparent 80%), rgba(255, 255, 255, 0.03);
+            box-shadow: inset 0 0 20px rgba(255, 138, 76, 0.2), 0 20px 40px rgba(255, 138, 76, 0.15);
+            border-color: rgba(255, 138, 76, 0.3);
+        }
+
+        .blob-purple {
+            background: radial-gradient(circle at 20% 80%, rgba(147, 51, 234, 0.4), rgba(147, 51, 234, 0.1) 60%, transparent 80%), rgba(255, 255, 255, 0.03);
+            box-shadow: inset 0 0 20px rgba(147, 51, 234, 0.2), 0 20px 40px rgba(147, 51, 234, 0.15);
+            border-color: rgba(147, 51, 234, 0.3);
+        }
+
+        .blob-green {
+            background: radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.4), rgba(16, 185, 129, 0.1) 60%, transparent 80%), rgba(255, 255, 255, 0.03);
+            box-shadow: inset 0 0 20px rgba(16, 185, 129, 0.2), 0 20px 40px rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        /* Organic Shapes */
+        .shape-1 { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+        .shape-2 { border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%; }
+        .shape-3 { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        .shape-4 { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        
+        /* Subtle shimmer on text */
+        .text-glow {
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark min-h-screen relative overflow-hidden flex flex-col">
+<!-- Ambient Background Glows -->
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/20 blur-[120px] rounded-full pointer-events-none z-0"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-purple-600/10 blur-[100px] rounded-full pointer-events-none z-0"></div>
+<!-- Header -->
+<header class="relative z-20 flex items-center justify-between px-6 py-6 w-full">
+<div class="text-white flex items-center gap-2">
+<!-- Icon replaced with Material Symbol -->
+<span class="material-symbols-outlined text-3xl">water_drop</span>
+<h2 class="text-white text-xl font-bold tracking-tight">Liquid/Agency</h2>
+</div>
+<button class="text-white flex items-center justify-center p-2 rounded-full hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="relative z-10 flex-1 flex flex-col items-center justify-center w-full px-4 py-8">
+<h1 class="sr-only">Explore Our World</h1>
+<!-- Liquid Navigation Cluster -->
+<div class="relative w-full max-w-md aspect-[4/5] flex items-center justify-center">
+<!-- Work Blob (Top Left) -->
+<a class="absolute top-[5%] left-[5%] w-[45%] aspect-square flex items-center justify-center group" href="#">
+<div class="glass-blob blob-blue shape-1 w-full h-full absolute transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-6"></div>
+<span class="relative z-10 text-white text-2xl font-bold tracking-wide text-glow">Work</span>
+<!-- Decorative glint -->
+<div class="absolute top-[20%] left-[20%] w-[15%] h-[10%] bg-white/40 blur-md rounded-full transform -rotate-45 pointer-events-none"></div>
+</a>
+<!-- About Blob (Top Right) -->
+<a class="absolute top-[15%] right-[5%] w-[40%] aspect-square flex items-center justify-center group" href="#">
+<div class="glass-blob blob-orange shape-2 w-full h-full absolute transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:-rotate-3"></div>
+<span class="relative z-10 text-white text-2xl font-bold tracking-wide text-glow">About</span>
+<!-- Decorative glint -->
+<div class="absolute top-[25%] right-[25%] w-[10%] h-[8%] bg-white/40 blur-md rounded-full transform rotate-12 pointer-events-none"></div>
+</a>
+<!-- Services Blob (Bottom Left) -->
+<a class="absolute bottom-[20%] left-[2%] w-[42%] aspect-square flex items-center justify-center group" href="#">
+<div class="glass-blob blob-purple shape-3 w-full h-full absolute transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-3"></div>
+<span class="relative z-10 text-white text-2xl font-bold tracking-wide text-glow">Services</span>
+<!-- Decorative glint -->
+<div class="absolute bottom-[25%] left-[20%] w-[12%] h-[12%] bg-white/30 blur-md rounded-full pointer-events-none"></div>
+</a>
+<!-- Contact Blob (Bottom Right) -->
+<a class="absolute bottom-[8%] right-[8%] w-[48%] aspect-square flex items-center justify-center group" href="#">
+<div class="glass-blob blob-green shape-4 w-full h-full absolute transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:-rotate-6"></div>
+<span class="relative z-10 text-white text-2xl font-bold tracking-wide text-glow">Contact</span>
+<!-- Decorative glint -->
+<div class="absolute top-[20%] right-[30%] w-[20%] h-[5%] bg-white/40 blur-md rounded-full transform -rotate-12 pointer-events-none"></div>
+</a>
+<!-- Connecting "Strands" (Visual Flourish) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none opacity-20" xmlns="http://www.w3.org/2000/svg">
+<path d="M100 150 Q 180 200 240 120" fill="none" stroke="white" stroke-dasharray="5,5" stroke-width="1"></path>
+<path d="M120 400 Q 180 300 260 450" fill="none" stroke="white" stroke-dasharray="5,5" stroke-width="1"></path>
+</svg>
+</div>
+<div class="mt-auto pb-8 flex flex-col items-center gap-2 z-10">
+<p class="text-[#9d9db8] text-sm font-normal tracking-wide animate-pulse">Scroll or tap to explore</p>
+<span class="material-symbols-outlined text-[#9d9db8] text-lg">keyboard_arrow_down</span>
+</div>
+</main>
+<!-- Decorative Noise/Grain Overlay -->
+<div class="fixed inset-0 pointer-events-none opacity-[0.03] z-50 bg-[url('https://placeholder.pics/svg/100')] bg-repeat" data-alt="Subtle noise texture overlay"></div>
+</body></html>
