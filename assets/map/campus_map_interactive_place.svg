@@ -1,0 +1,54 @@
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" style="background-color: #f4f4f4;">
+  <text x="600" y="40" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" font-weight="bold">Ground Floor Plan - Department of Architecture</text>
+  <text x="600" y="65" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#555">Thiagarajar College of Engineering</text>
+
+  <defs>
+    <style>
+      .room { fill: #ffffff; stroke: #333; stroke-width: 2; }
+      .corridor { fill: #e0e0e0; stroke: #999; stroke-width: 1; }
+      .courtyard { fill: #dcedc8; stroke: #333; stroke-width: 2; stroke-dasharray: 5,5; }
+      .label { font-family: Arial, sans-serif; font-size: 14px; text-anchor: middle; dominant-baseline: middle; fill: #333; }
+      .small-label { font-family: Arial, sans-serif; font-size: 10px; text-anchor: middle; fill: #555; }
+    </style>
+  </defs>
+
+  <rect x="50" y="180" width="150" height="280" class="room" />
+  <text x="125" y="320" class="label">1st Yr Studio A</text>
+
+  <rect x="50" y="480" width="150" height="100" class="room" />
+  <text x="125" y="530" class="label">PG Computer Lab</text>
+
+  <rect x="50" y="590" width="150" height="120" class="room" />
+  <text x="125" y="650" class="label">Computer Lab</text>
+
+  <rect x="220" y="80" width="300" height="80" class="room" />
+  <text x="370" y="120" class="label">Construction Yard</text>
+
+  <rect x="220" y="180" width="150" height="100" class="room" />
+  <text x="295" y="230" class="label">Staff Rooms</text>
+
+  <rect x="220" y="300" width="180" height="300" class="courtyard" />
+  <text x="310" y="450" class="label">Courtyard / Open</text>
+
+  <rect x="420" y="180" width="150" height="250" class="room" />
+  <text x="495" y="305" class="label">1st Yr Studio B</text>
+
+  <rect x="580" y="450" width="200" height="150" class="room" />
+  <text x="680" y="525" class="label">Lecture Hall</text>
+
+  <rect x="600" y="80" width="180" height="150" class="room" />
+  <text x="690" y="155" class="label">Studios / Staff</text>
+
+  <rect x="800" y="250" width="180" height="250" class="room" />
+  <text x="890" y="375" class="label">Carpentry Workshop</text>
+
+  <rect x="800" y="520" width="180" height="200" class="room" />
+  <text x="890" y="620" class="label">Library</text>
+
+  <rect x="50" y="730" width="200" height="50" class="room" />
+  <text x="150" y="755" class="small-label">Exhibition Hall / Ladies Room</text>
+
+  <rect x="200" y="600" width="600" height="40" class="corridor" />
+  <rect x="580" y="250" width="200" height="40" class="corridor" />
+
+</svg>

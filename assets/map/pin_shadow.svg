@@ -1,0 +1,10 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="shadowGradient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(24 24) rotate(90) scale(10 24)">
+      <stop stop-color="black" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="black" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <ellipse cx="24" cy="24" rx="24" ry="10" fill="url(#shadowGradient)"/>
+</svg>
