@@ -1,0 +1,36 @@
+﻿Resolving dependencies...
+Downloading packages...
+  _fe_analyzer_shared 91.0.0 (94.0.0 available)
+  analyzer 8.4.1 (10.0.2 available)
+  characters 1.4.0 (1.4.1 available)
+  matcher 0.12.17 (0.12.18 available)
+  material_color_utilities 0.11.1 (0.13.0 available)
+  meta 1.17.0 (1.18.1 available)
+  test 1.26.3 (1.29.0 available)
+  test_api 0.7.7 (0.7.9 available)
+  test_core 0.6.12 (0.6.15 available)
+Got dependencies!
+9 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Analyzing tracker2...                                           
+
+warning - The value of the local variable 'size' isn't used - lib\features\activity\activity_select_screen.dart:27:11 - unused_local_variable
+warning - The value of the local variable 'padding' isn't used - lib\features\activity\activity_select_screen.dart:28:11 - unused_local_variable
+warning - The value of the local variable 'spacing' isn't used - lib\features\activity\activity_select_screen.dart:29:11 - unused_local_variable
+  error - The named parameter 'child' is required, but there's no corresponding argument - lib\features\activity\activity_select_screen.dart:34:12 - missing_required_argument
+  error - Unexpected text 'return' - lib\features\activity\activity_select_screen.dart:35:5 - unexpected_token
+  error - Too many positional arguments: 0 expected, but 1 found - lib\features\activity\activity_select_screen.dart:35:12 - extra_positional_arguments_could_be_named
+   info - Don't invoke 'print' in production code - lib\features\activity\activity_select_screen.dart:119:37 - avoid_print
+  error - Expected to find ')' - lib\features\activity\activity_select_screen.dart:185:6 - expected_token
+   info - Don't invoke 'print' in production code - lib\features\auth\auth_provider.dart:47:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\auth\auth_provider.dart:50:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\auth\data\auth_repository.dart:40:5 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\auth\data\auth_repository.dart:46:7 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\auth\data\auth_repository.dart:48:7 - avoid_print
+   info - Don't invoke 'print' in production code - lib\features\auth\data\auth_repository.dart:51:7 - avoid_print
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\features\auth\google_login_screen.dart:78:53 - deprecated_member_use
+  error - Undefined name 'children' - lib\features\home\home_screen.dart:36:15 - undefined_identifier
+  error - Expected to find ')' - lib\features\home\home_screen.dart:36:23 - expected_token
+  error - Expected to find ']' - lib\features\home\home_screen.dart:36:23 - expected_token
+   info - 'scale' is deprecated and shouldn't be used. Use scaleByVector3, scaleByVector4, or scaleByDouble instead - lib\features\home\widgets\glass_blob.dart:84:21 - deprecated_member_use
+

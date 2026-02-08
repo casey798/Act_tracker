@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -10,8 +11,9 @@ class GlassBlob extends StatefulWidget {
   final double width;
   final double height;
   final Duration delay;
+  final Duration scaleDuration;
   final double rotation;
-  final double? fontSize; // Added property
+  final double? fontSize;
 
   const GlassBlob({
     super.key,
@@ -22,6 +24,7 @@ class GlassBlob extends StatefulWidget {
     required this.width,
     required this.height,
     this.delay = Duration.zero,
+    this.scaleDuration = const Duration(seconds: 6),
     this.rotation = 0,
     this.fontSize,
   });
@@ -46,25 +49,28 @@ class _GlassBlobState extends State<GlassBlob> {
           onPlay: (controller) => controller.repeat(reverse: true),
           effects: [
             MoveEffect(
-              begin: const Offset(0, -3), // Reduced movement
-              end: const Offset(0, 3),
-              duration: 4.seconds,
+              begin: const Offset(0, -5), 
+              end: const Offset(0, 5),
+              duration: 5.seconds,
               curve: Curves.easeInOutSine,
-              delay: widget.delay,
+              delay: widget.delay + (widget.rotation.abs() * 1000).ms, // Randomize phase based on rotation seed
             ),
             ScaleEffect(
               begin: const Offset(1.0, 1.0),
-              end: const Offset(1.02, 1.02), // Reduced scale
-              duration: 5.seconds,
-              curve: Curves.easeInOutSine,
-              delay: widget.delay + 1.seconds,
+              end: const Offset(1.05, 1.05), 
+              duration: widget.scaleDuration,
+              curve: Curves.easeInOutQuad,
+              delay: widget.delay + (widget.rotation.abs() * 500).ms,
             ),
           ],
           child: MouseRegion(
             onEnter: (_) => setState(() => _isHovered = true),
             onExit: (_) => setState(() => _isHovered = false),
             child: GestureDetector(
-              onTap: widget.onTap,
+              onTap: () {
+                HapticFeedback.lightImpact();
+                widget.onTap();
+              },
               child: AnimatedContainer(
                 duration: 300.ms,
                 curve: Curves.easeOutBack,
@@ -76,13 +82,13 @@ class _GlassBlobState extends State<GlassBlob> {
                   borderRadius: widget.borderRadius,
                   // Subtle gradient border
                   border: Border.all(
-                    color: Colors.white.withValues(alpha: 0.15),
+                    color: Colors.white.withOpacity(0.15),
                     width: 1,
                   ),
                   boxShadow: [
                     // Outer Halo Glow
                     BoxShadow(
-                      color: widget.colors.first.withValues(alpha: _isHovered ? 0.6 : 0.2), // Brighter halo
+                      color: widget.colors.first.withOpacity(_isHovered ? 0.6 : 0.2), // Brighter halo
                       blurRadius: _isHovered ? 30 : 20,
                       spreadRadius: _isHovered ? 4 : 0,
                       offset: const Offset(0, 0), // Centered halo
@@ -99,8 +105,8 @@ class _GlassBlobState extends State<GlassBlob> {
                           center: const Alignment(-0.2, -0.2),
                           radius: 1.3,
                           colors: [
-                            widget.colors.first.withValues(alpha: 0.25),
-                            widget.colors.first.withValues(alpha: 0.05),
+                            widget.colors.first.withOpacity(0.25),
+                            widget.colors.first.withOpacity(0.05),
                             Colors.transparent,
                           ],
                           stops: const [0.0, 0.5, 1.0],
@@ -120,9 +126,9 @@ class _GlassBlobState extends State<GlassBlob> {
                                   begin: Alignment.topLeft,
                                   end: Alignment.bottomRight,
                                   colors: [
-                                    Colors.white.withValues(alpha: 0.12),
+                                    Colors.white.withOpacity(0.12),
                                     Colors.transparent,
-                                    Colors.white.withValues(alpha: 0.02),
+                                    Colors.white.withOpacity(0.02),
                                   ],
                                   stops: const [0.0, 0.4, 1.0],
                                 ),

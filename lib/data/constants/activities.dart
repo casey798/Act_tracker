@@ -28,6 +28,8 @@ class Activities {
     'Brainstorming',
     'Mentoring',
     'Directing',
+    'Interviewing',
+    'Negotiating',
   ];
 
   static const List<String> highPersonal = [
@@ -47,6 +49,8 @@ class Activities {
     'Photocollaging',
     'Concepting',
     'Portfolio-ing',
+    'Specifying',
+    'Analysing',
   ];
 
   static const List<String> lowSocial = [
@@ -66,6 +70,8 @@ class Activities {
     'Browsing',
     'Meme-ing',
     'Coffee-ing',
+    'Listening',
+    'People-watching',
   ];
 
   static const List<String> lowPersonal = [
@@ -85,5 +91,7 @@ class Activities {
     'Reading',
     'Sourcing',
     'Dreaming',
+    'Meditating',
+    'Journaling',
   ];
 }

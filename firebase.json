@@ -1,0 +1,32 @@
+{
+  "flutter": {
+    "platforms": {
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "whachadoin-tracker-798",
+          "configurations": {
+            "android": "1:65823745012:android:2126cc19d753315b1acfa1",
+            "ios": "1:65823745012:ios:0d6db63ca0a57ae31acfa1",
+            "macos": "1:65823745012:ios:0d6db63ca0a57ae31acfa1",
+            "web": "1:65823745012:web:b1e3e15e4a526e901acfa1",
+            "windows": "1:65823745012:web:5efea5442d7ce1f41acfa1"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

@@ -1,16 +1,14 @@
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:tracker_pwa/core/theme/app_theme.dart';
 import 'package:tracker_pwa/features/auth/auth_provider.dart';
 
-class LoginScreen extends ConsumerWidget {
-  const LoginScreen({super.key});
+class GoogleLoginScreen extends ConsumerWidget {
+  const GoogleLoginScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Listen to auth state to handle errors or loading if needed
-    // The actual redirection happens in the router
     final authState = ref.watch(authProvider);
 
     return Scaffold(
@@ -33,7 +31,7 @@ class LoginScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                'Campus Activity Tracker',
+                'Sign in to track your campus activities',
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       color: AppTheme.textSecondary,
                     ),
@@ -45,23 +43,39 @@ class LoginScreen extends ConsumerWidget {
                 SizedBox(
                   width: double.infinity,
                   height: 56,
-                  child: ElevatedButton(
+                  child: ElevatedButton.icon(
                     onPressed: () {
-                      ref.read(authProvider.notifier).startTracking();
+                      HapticFeedback.lightImpact();
+                      ref.read(authProvider.notifier).signInWithGoogle();
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppTheme.textPrimary,
-                      foregroundColor: AppTheme.background,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: const Text(
-                      'Start Tracking',
+                    icon: const Icon(Icons.login), // Replace with Google Logo if available or use generic
+                    label: const Text(
+                      'Sign in with Google',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black, // Standard Google Auth colors
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                ),
+              const SizedBox(height: 16),
+              if (!authState.isLoading)
+                TextButton(
+                  onPressed: () {
+                    HapticFeedback.lightImpact();
+                    ref.read(authProvider.notifier).signInAnonymously();
+                  },
+                  child: Text(
+                    'Developer Skip',
+                    style: TextStyle(
+                      color: AppTheme.textSecondary.withOpacity(0.5),
                     ),
                   ),
                 ),
