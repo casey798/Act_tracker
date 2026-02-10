@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:heroicons/heroicons.dart';
+
 
 class CommonAppBar extends StatelessWidget {
   final VoidCallback? onBack;
@@ -26,7 +26,7 @@ class CommonAppBar extends StatelessWidget {
     return Container(
       height: topPadding + appBarHeight,
       padding: EdgeInsets.only(top: topPadding, left: 16, right: 16),
-      color: Colors.black,
+      color: Colors.transparent, // Allow background to show through
       child: Row(
         children: [
           IconButton(
@@ -42,14 +42,21 @@ class CommonAppBar extends StatelessWidget {
               ? Center(
                   child: Text(
                     title!,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Colors.white,
-                      fontSize: 18, // Slightly larger to match standard app bars
-                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
                       letterSpacing: -0.5,
+                      shadows: [
+                        Shadow(
+                          offset: const Offset(0, 1),
+                          blurRadius: 4.0,
+                          color: Colors.black.withValues(alpha: 0.3),
+                        ),
+                      ],
                     ),
-                  ),
-                )
+                    ),
+                  )
               : const SizedBox.shrink()
             ),
           ),

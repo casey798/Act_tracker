@@ -15,7 +15,7 @@ class SegmentedProgressBar extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: List.generate(totalSteps, (index) {
-        final bool isActive = index <= currentStep;
+
         // The user spec says:
         // Active State (Current Step): White, Glow
         // Inactive State (Future/Past Steps): Grey[800] or White with 0.2 opacity.
@@ -78,7 +78,7 @@ class SegmentedProgressBar extends StatelessWidget {
               boxShadow: isFilled
                   ? [
                       BoxShadow(
-                        color: Colors.white.withOpacity(0.8),
+                        color: Colors.white.withValues(alpha: 0.8),
                         blurRadius: 8,
                         spreadRadius: 1,
                       )

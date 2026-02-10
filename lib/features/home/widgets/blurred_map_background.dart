@@ -1,13 +1,15 @@
-import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 
 class BlurredMapBackground extends StatelessWidget {
   final Matrix4? mapMatrix;
+  final double opacity;
 
   const BlurredMapBackground({
     super.key,
     this.mapMatrix,
+    this.opacity = 0.5,
   });
 
   @override
@@ -22,31 +24,31 @@ class BlurredMapBackground extends StatelessWidget {
     return ClipRect(
       child: Stack(
         children: [
-          // The Map with the same transformation and blur
+          // The Static Blurred Map
           Positioned.fill(
-            child: ImageFiltered(
-              imageFilter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-              child: InteractiveViewer(
-                transformationController: TransformationController(mapMatrix),
-                panEnabled: false,
-                scaleEnabled: false,
-                constrained: false,
-                boundaryMargin: EdgeInsets.zero,
-                child: Opacity(
-                  opacity: 0.5, // Translucent
-                  child: SvgPicture.asset(
-                    'assets/map/Reworked_map_1.svg',
-                    fit: BoxFit.fitHeight,
-                    height: availableHeight,
-                  ),
+            child: InteractiveViewer(
+              transformationController: TransformationController(mapMatrix),
+              panEnabled: false,
+              scaleEnabled: false,
+              constrained: false,
+              boundaryMargin: EdgeInsets.zero,
+              child: Opacity(
+                opacity: opacity,
+                child: Image.asset(
+                  'assets/map/map_blurred.png',
+                  fit: BoxFit.fitHeight,
+                  height: availableHeight,
+                  width: availableHeight, // Ensure it remains square like the SVG
+                  errorBuilder: (context, error, stackTrace) {
+                    // Fallback if asset is missing (during dev)
+                    return Container(
+                      height: availableHeight,
+                      width: availableHeight,
+                      color: Colors.grey.withValues(alpha: 0.1),
+                    );
+                  },
                 ),
               ),
-            ),
-          ),
-          // Darken layer to help text/blobs pop
-          Positioned.fill(
-            child: Container(
-              color: Colors.black.withOpacity(0.3),
             ),
           ),
         ],

@@ -32,7 +32,7 @@ class AuthRepository {
       final UserCredential userCredential = await _firebaseAuth.signInWithCredential(credential);
       return userCredential.user;
     } catch (e) {
-      print("Error signing in with Google: $e");
+      // print("Error signing in with Google: $e");
       // Handle error correctly in a real app (log it, rethrow, etc.)
       rethrow; 
     }
@@ -40,12 +40,12 @@ class AuthRepository {
 
   Future<User?> signInAnonymously() async {
     try {
-      print("AuthRepository: Attempting signInAnonymously...");
+      // print("AuthRepository: Attempting signInAnonymously...");
       final UserCredential userCredential = await _firebaseAuth.signInAnonymously();
-      print("AuthRepository: signInAnonymously success! User: ${userCredential.user?.uid}");
+      // print("AuthRepository: signInAnonymously success! User: ${userCredential.user?.uid}");
       return userCredential.user;
     } catch (e) {
-      print("AuthRepository: signInAnonymously FAILED: $e");
+      // print("AuthRepository: signInAnonymously FAILED: $e");
       rethrow;
     }
   }

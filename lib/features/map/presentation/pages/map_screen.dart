@@ -129,7 +129,7 @@ class _MapScreenState extends ConsumerState<MapScreen> with SingleTickerProvider
       // Map is square, width = height = availableHeight
       final double mapWidth = availableHeight;
       final double offsetX = (screenSize.width - mapWidth) / 2;
-      _transformationController.value = Matrix4.identity()..translate(offsetX);
+      _transformationController.value = Matrix4.identity()..setTranslationRaw(offsetX, 0, 0);
       _isInitialized = true;
     }
 

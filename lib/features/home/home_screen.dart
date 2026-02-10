@@ -1,27 +1,26 @@
-import 'dart:ui';
+
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tracker_pwa/core/widgets/app_background.dart';
 import 'package:tracker_pwa/features/auth/auth_provider.dart';
-import 'package:tracker_pwa/features/home/widgets/glass_blob.dart';
+
 import 'package:heroicons/heroicons.dart';
-import 'package:tracker_pwa/core/constants/app_constants.dart';
+
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Screen size for relative positioning
-    final size = MediaQuery.of(context).size;
-    final isMobile = size.width < 600;
+
+
     
     // Cluster container size
-    final clusterWidth = isMobile ? size.width * 0.9 : 400.0;
+
     // Calculate blob size based on grid
-    final blobSize = clusterWidth * 0.44; 
+ 
 
     return AppBackground(
       child: Stack(
@@ -82,19 +81,19 @@ class HomeScreen extends ConsumerWidget {
                    shape: BoxShape.circle,
                    gradient: LinearGradient(
                      colors: [
-                       Colors.white.withOpacity(0.2),
-                       Colors.white.withOpacity(0.05),
+                       Colors.white.withValues(alpha: 0.2),
+                       Colors.white.withValues(alpha: 0.05),
                      ],
                      begin: Alignment.topLeft,
                      end: Alignment.bottomRight,
                    ),
                    border: Border.all(
-                     color: Colors.white.withOpacity(0.3),
+                     color: Colors.white.withValues(alpha: 0.3),
                      width: 1,
                    ),
                    boxShadow: [
                      BoxShadow(
-                       color: Colors.black.withOpacity(0.2),
+                       color: Colors.black.withValues(alpha: 0.2),
                        blurRadius: 20,
                        spreadRadius: 5,
                      ),

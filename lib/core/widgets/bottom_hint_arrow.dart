@@ -22,25 +22,20 @@ class BottomHintArrow extends StatelessWidget {
               text,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.white, // Increased from white54 for better visibility
-                fontSize: 14,
-                fontWeight: FontWeight.w500, // Added slight weight
+                color: Colors.white,
+                fontSize: 16, // Increased size
+                fontWeight: FontWeight.w600, // Semi-bold for better readability
                 letterSpacing: 1.0,
                 shadows: [
                   Shadow(
-                    offset: const Offset(0, 1),
-                    blurRadius: 3.0,
-                    color: Colors.black.withOpacity(0.8),
-                  ),
-                  Shadow(
                     offset: const Offset(0, 2),
-                    blurRadius: 6.0,
-                    color: Colors.black.withOpacity(0.8),
+                    blurRadius: 4.0,
+                    color: Colors.black.withValues(alpha: 0.5),
                   ),
                   Shadow(
                     offset: const Offset(0, 0),
                     blurRadius: 10.0,
-                    color: Colors.black,
+                    color: Colors.black.withValues(alpha: 0.5),
                   ),
                 ],
               ),
@@ -55,13 +50,13 @@ class BottomHintArrow extends StatelessWidget {
                   right: 0,
                   child: Icon(
                     Icons.keyboard_arrow_down,
-                    color: Colors.black.withOpacity(0.8),
+                    color: Colors.black.withValues(alpha: 0.8),
                     size: 24,
                   ),
                 ),
                 Icon(
                   Icons.keyboard_arrow_down,
-                  color: Colors.white.withOpacity(0.7),
+                  color: Colors.white.withValues(alpha: 0.8),
                   size: 24,
                 ),
               ],
@@ -72,3 +67,4 @@ class BottomHintArrow extends StatelessWidget {
     );
   }
 }
+

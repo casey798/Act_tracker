@@ -75,7 +75,7 @@ class GoogleLoginScreen extends ConsumerWidget {
                   child: Text(
                     'Developer Skip',
                     style: TextStyle(
-                      color: AppTheme.textSecondary.withOpacity(0.5),
+                      color: AppTheme.textSecondary.withValues(alpha: 0.5),
                     ),
                   ),
                 ),

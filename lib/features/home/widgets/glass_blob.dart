@@ -15,6 +15,7 @@ class GlassBlob extends StatefulWidget {
   final double rotation;
   final double? fontSize;
   final String? heroTag;
+  final bool enableBlur; // Optimization: Disable blur for grid items
 
   const GlassBlob({
     super.key,
@@ -29,6 +30,7 @@ class GlassBlob extends StatefulWidget {
     this.rotation = 0,
     this.fontSize,
     this.heroTag,
+    this.enableBlur = true,
   });
 
   @override
@@ -100,19 +102,22 @@ class _GlassBlobState extends State<GlassBlob> with TickerProviderStateMixin {
                 child: AnimatedContainer(
                   duration: 300.ms,
                   curve: Curves.easeOutBack,
-                  transform: Matrix4.identity()
-                    ..scale(_isHovered ? 1.05 : 1.0),
+                    transform: Matrix4.diagonal3Values(
+                      _isHovered ? 1.05 : 1.0,
+                      _isHovered ? 1.05 : 1.0,
+                      1.0,
+                    ),
                   width: widget.width,
                   height: widget.height,
                   decoration: BoxDecoration(
                     borderRadius: widget.borderRadius,
                     border: Border.all(
-                      color: Colors.white.withOpacity(0.08),
+                      color: Colors.white.withValues(alpha: 0.08),
                       width: 1,
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: widget.colors.first.withOpacity(_isHovered ? 0.4 : 0.1),
+                        color: widget.colors.first.withValues(alpha: _isHovered ? 0.4 : 0.1),
                         blurRadius: _isHovered ? 25 : 15,
                         spreadRadius: _isHovered ? 2 : 0,
                         offset: const Offset(0, 0),
@@ -121,72 +126,12 @@ class _GlassBlobState extends State<GlassBlob> with TickerProviderStateMixin {
                   ),
                   child: ClipRRect(
                     borderRadius: widget.borderRadius,
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          gradient: RadialGradient(
-                            center: const Alignment(-0.2, -0.2),
-                            radius: 1.3,
-                            colors: [
-                              widget.colors.first.withOpacity(0.06),
-                              widget.colors.first.withOpacity(0.01),
-                              Colors.transparent,
-                            ],
-                            stops: const [0.0, 0.5, 1.0],
-                          ),
-                        ),
-                        child: Stack(
-                          children: [
-                            Positioned.fill(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                    colors: [
-                                      Colors.white.withOpacity(0.04),
-                                      Colors.transparent,
-                                      Colors.white.withOpacity(0.01),
-                                    ],
-                                    stops: const [0.0, 0.4, 1.0],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Center(
-                              child: Transform.rotate(
-                                angle: -widget.rotation,
-                                child: Material(
-                                  type: MaterialType.transparency,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      widget.label,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: widget.fontSize ?? 24,
-                                        fontWeight: FontWeight.bold,
-                                        letterSpacing: 1.0,
-                                        height: 1.1,
-                                        shadows: [
-                                          Shadow(
-                                            color: Colors.black38,
-                                            blurRadius: 10,
-                                            offset: const Offset(0, 2),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    child: widget.enableBlur
+                        ? BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                            child: _buildBlobContent(),
+                          )
+                        : _buildBlobContent(),
                   ),
                 ),
               ),
@@ -203,6 +148,76 @@ class _GlassBlobState extends State<GlassBlob> with TickerProviderStateMixin {
       );
     }
     return blob;
+  }
+
+  Widget _buildBlobContent() {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: RadialGradient(
+          center: const Alignment(-0.2, -0.2),
+          radius: 1.3,
+          colors: [
+            widget.colors.first.withValues(alpha: 0.06),
+            widget.colors.first.withValues(alpha: 0.01),
+            Colors.transparent,
+          ],
+          stops: const [0.0, 0.5, 1.0],
+        ),
+      ),
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.white.withValues(alpha: 0.04),
+                    Colors.transparent,
+                    Colors.white.withValues(alpha: 0.01),
+                  ],
+                  stops: const [0.0, 0.4, 1.0],
+                ),
+              ),
+            ),
+          ),
+          Center(
+            child: Transform.rotate(
+              angle: -widget.rotation,
+              child: Material(
+                type: MaterialType.transparency,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      widget.label,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'Syne',
+                        color: Colors.white,
+                        fontSize: widget.fontSize ?? 24,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.5,
+                        height: 1.0,
+                        shadows: [
+                          Shadow(
+                            color: Colors.black.withValues(alpha: 0.3),
+                            blurRadius: 10,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 

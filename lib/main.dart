@@ -29,11 +29,23 @@ void main() async {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends ConsumerWidget {
+class MyApp extends ConsumerStatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends ConsumerState<MyApp> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Pre-cache the heavy blurred map image for smoother transitions
+    precacheImage(const AssetImage('assets/map/map_blurred.png'), context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final router = ref.watch(routerProvider);
 
     return MaterialApp.router(
@@ -115,6 +127,7 @@ final routerProvider = Provider<GoRouter>((ref) {
               endColor: extras['endColor'],
               mapX: extras['mapX'] as double?,
               mapY: extras['mapY'] as double?,
+              mapMatrix: extras['mapMatrix'] as Matrix4?,
             ),
             transitionsBuilder: (context, animation, secondaryAnimation, child) {
               return FadeTransition(opacity: animation, child: child);

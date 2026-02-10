@@ -1,15 +1,16 @@
 import 'dart:ui';
-import 'package:flutter/services.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tracker_pwa/data/constants/activities.dart';
-import 'package:heroicons/heroicons.dart';
-import 'package:tracker_pwa/core/widgets/app_background.dart';
+
+
 import 'package:tracker_pwa/features/home/widgets/glass_blob.dart';
 import 'package:tracker_pwa/core/constants/app_constants.dart';
-import 'package:tracker_pwa/core/widgets/common_app_bar.dart';
+
 import 'package:tracker_pwa/core/widgets/bottom_hint_arrow.dart';
+import 'package:tracker_pwa/features/home/widgets/blurred_map_background.dart';
 
 class ActivitySelectScreen extends StatelessWidget {
   final String category;
@@ -17,6 +18,7 @@ class ActivitySelectScreen extends StatelessWidget {
   final Color endColor;
   final double? mapX;
   final double? mapY;
+  final Matrix4? mapMatrix;
 
   const ActivitySelectScreen({
     super.key,
@@ -25,6 +27,7 @@ class ActivitySelectScreen extends StatelessWidget {
     required this.endColor,
     this.mapX,
     this.mapY,
+    this.mapMatrix,
   });
 
   @override
@@ -34,7 +37,15 @@ class ActivitySelectScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.black, // Match MapScreen background
-      body: Column(
+      body: Stack(
+        children: [
+          // Blurred Map Background (Lower opacity for distinction)
+          BlurredMapBackground(
+            mapMatrix: mapMatrix,
+            opacity: 0.2, // More transparent than Category screen
+          ),
+          
+          Column(
             children: [
                 Padding(
                   padding: EdgeInsets.only(
@@ -54,10 +65,10 @@ class ActivitySelectScreen extends StatelessWidget {
                           child: Container(
                             height: 52,
                             decoration: BoxDecoration(
-                              color: startColor.withOpacity(0.08),
+                              color: startColor.withValues(alpha: 0.08),
                               borderRadius: BorderRadius.circular(32),
                               border: Border.all(
-                                color: startColor.withOpacity(0.1),
+                                color: startColor.withValues(alpha: 0.1),
                                 width: 1.5,
                               ),
                             ),
@@ -192,8 +203,8 @@ class ActivitySelectScreen extends StatelessWidget {
                                                   width: double.infinity,
                                                   height: double.infinity,
                                                   colors: [
-                                                    Colors.white.withOpacity(0.08),
-                                                    Colors.white.withOpacity(0.03),
+                                                    Colors.white.withValues(alpha: 0.08),
+                                                    Colors.white.withValues(alpha: 0.03),
                                                   ],
                                                   borderRadius: organicBorder,
                                                   heroTag: 'activity_${activities[index]}_$index', // Unique tag for pop/morph
@@ -205,7 +216,8 @@ class ActivitySelectScreen extends StatelessWidget {
                                                   scaleDuration: Duration(
                                                       milliseconds: 4000 +
                                                           (index * 500) % 3000), // Organic variation
-                                                  fontSize: 15.0, // Smaller font for grid
+                                                  fontSize: 17.0, // Adapted for Syne font
+                                                  enableBlur: false, // Optimize: No blur for grid items (background is already blurred)
                                                   onTap: () {
                                                     // print('Selected: ${activities[index]}');
                                                     // TODO: Navigate to Details
@@ -237,6 +249,8 @@ class ActivitySelectScreen extends StatelessWidget {
                  ),
                ),
             ],
+          ),
+        ],
       ),
     );
   }

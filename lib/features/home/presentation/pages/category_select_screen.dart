@@ -1,10 +1,10 @@
-import 'dart:ui';
-import 'package:flutter/services.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tracker_pwa/core/widgets/app_background.dart';
+
 import 'package:tracker_pwa/features/home/widgets/glass_blob.dart';
-import 'package:heroicons/heroicons.dart';
+
 import 'package:tracker_pwa/core/constants/app_constants.dart';
 import 'package:tracker_pwa/core/widgets/common_app_bar.dart';
 import 'package:tracker_pwa/core/widgets/bottom_hint_arrow.dart';
@@ -37,17 +37,20 @@ class CategorySelectScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.black, // Match MapScreen background
-      body: Column(
+      body: Stack(
+        children: [
+          // Blurred Map Background
+          BlurredMapBackground(mapMatrix: mapMatrix),
+          
+          Column(
             children: [
-                CommonAppBar(
-                  // title removed
-                ),
+              CommonAppBar(
+                // title removed
+              ),
               
               Expanded(
                 child: Stack(
                   children: [
-                    // Blurred Map Background
-                    BlurredMapBackground(mapMatrix: mapMatrix),
                     
                     // Glass Blobs Cluster - "Organic Grid"
                     Center(
@@ -180,6 +183,8 @@ class CategorySelectScreen extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+        ],
       ),
     );
   }
