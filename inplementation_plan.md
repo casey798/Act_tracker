@@ -5,8 +5,7 @@ Create a PWA for tracking student activities in the architecture department to a
 **Key Features:** Coordinate-based map tracking, 4-Quadrant Emotion/Energy input, minimal aesthetic (Space Grotesk), Admin Heatmap.
 
 ## User Review Required
-> [!IMPORTANT]
-> **Map Coordinates:** We are using relative (percentage-based) coordinates on the SVG map to ensure pins stay in place across different screen sizes. The map aspect ratio must be locked.
+
 
 > [!WARNING]
 > **PWA Limitations:** "Add to Home Screen" is required for full screen and notifications. We will block the main app usage until this is done (or strongly encourage it).
@@ -82,7 +81,7 @@ Create a PWA for tracking student activities in the architecture department to a
 
 ### [Data Layer]
 #### [NEW] `lib/data/models/activity_log.dart`
-*   Fields: `id`, `userId`, `activityType`, `quadrant`, `x_percent`, `y_percent`, `timestamp`, `duration`, `satisfaction`.
+*   Fields: `id`, `userId`, `activityType`, `quadrant`, `x_norm`, `y_norm`, `timestamp`, `duration`, `satisfaction`.
 
 #### [NEW] `lib/data/repositories/firestore_repository.dart`
 *   Methods: `submitLog`, `getUserLogs`.

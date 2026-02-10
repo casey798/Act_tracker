@@ -95,7 +95,7 @@ The home screen consists of 4 large, breathing blobs/gradients.
 
 
 * **Step 4 (The Context):**
-* **Where?** A stylized **SVG Map** of the campus overlays the bottom half. User taps "Library" (Zone highlights). **NO GPS PIN DROPPING.**
+* **Where?** A stylized **SVG Map** of the campus overlays the bottom half. User taps anywhere to drop a "Pin" at that location.
 * **Satisfaction:** A single slider thumb. Sliding right = Rounder shape (Happy). Sliding left = Spiky shape (Frustrated).
 
 
@@ -142,7 +142,8 @@ The home screen consists of 4 large, breathing blobs/gradients.
   "quadrant": "HIGH_FOCUS", // Enum
   "activity_label": "Coding", // String
   "satisfaction_index": 0.8, // 0.0 to 1.0
-  "zone_id": "lib_floor_3", // ID from SVG Map
+  "x_norm": 0.54, // Normalized X coordinate (0.0 - 1.0)
+  "y_norm": 0.32, // Normalized Y coordinate (0.0 - 1.0)
   "timestamp": "2023-10-27T14:00:00Z",
   "duration_minutes": 60 // Default or user adjusted
 }
@@ -153,10 +154,10 @@ The home screen consists of 4 large, breathing blobs/gradients.
 *Updated via Cloud Function `onCreate` of a log. No PII.*
 
 ```json
-{
-  "doc_id": "2023-10-27_lib_floor_3", // Date + Zone Key
+  "doc_id": "2023-10-27_50_30", // Date + X_Y bucket
   "date": "2023-10-27",
-  "zone_id": "lib_floor_3",
+  "x_bucket": 50, // e.g., rounded int %
+  "y_bucket": 30,
   "total_visits": 42,
   "avg_satisfaction": 0.75,
   "top_activity": "Studying"
@@ -169,9 +170,10 @@ The home screen consists of 4 large, breathing blobs/gradients.
 * **Asset:** `assets/campus_map_optimized.svg`.
 * **Tech:** `flutter_svg` package.
 * **Logic:**
-* The SVG must have `id` tags for each building path (e.g., `<path id="library" ... />`).
-* App listens for tap events on these IDs to set `zone_id`.
-* *Advantage:* Instant load, no API costs, no GPS lag.
+* The SVG is wrapped in an `InteractiveViewer`.
+* App listens for `onTapUp` events to calculate normalized (0-1) `x,y` coordinates relative to the map image.
+* **No SVG tagging required.** IDs are not used. Positions are loose.
+* *Advantage:* Instant load, no API costs, works with any floorplan image.
 
 
 
@@ -206,8 +208,9 @@ The home screen consists of 4 large, breathing blobs/gradients.
 > 
 > **Task 3: The `CampusMapPicker**`
 > * Create a widget that loads `assets/campus.svg`.
-> * Use a `Stack` to overlay "Zones" on top of a static map image (or clickable SVG paths if using a library that supports it).
-> * Selected zone must glow (Shadow/Bloom effect).
+> * Wrap in `InteractiveViewer` for pan/zoom.
+> * Implement "Tap to Pin" logic to place a marker at specific `(x, y)` coordinates.
+> * Include visual feedback (Pin drop animation).
 > 
 > 
 > **Task 4: Data Models**

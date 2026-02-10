@@ -9,7 +9,7 @@ final userProvider = StreamProvider<User?>((ref) {
   return authRepository.authStateChanges;
 });
 
-// Controls the "Tracking" session state (e.g. has the user clicked "Start Tracking"?)
+// Controls the "Tracking" session state (e.g. has the user clicked "Check In"?)
 final authProvider = AsyncNotifierProvider<AuthNotifier, String?>(AuthNotifier.new);
 
 class AuthNotifier extends AsyncNotifier<String?> {

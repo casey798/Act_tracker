@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "65823745012",
+    "project_id": "whachadoin-tracker-798",
+    "storage_bucket": "whachadoin-tracker-798.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65823745012:android:2126cc19d753315b1acfa1",
+        "android_client_info": {
+          "package_name": "com.casey.whacha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "65823745012-jirq6isqcpi6o9jfthj8ph54i86gds82.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.casey.whacha",
+            "certificate_hash": "9ce9a5cc3a092e00221832684dc6efbc49b3ef96"
+          }
+        },
+        {
+          "client_id": "65823745012-2rbn9i2c7hkip3gt7rfocufs50fa72b5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtDMIqw3EKlfh42vn-qoa-dTbSVlhvwAo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "65823745012-2rbn9i2c7hkip3gt7rfocufs50fa72b5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "65823745012-jh50sal6fev2f7gapqi8r6oloa0vred8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.casey.whacha"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
