@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tracker_pwa/features/auth/auth_provider.dart';
 import 'package:tracker_pwa/features/map/presentation/widgets/location_target_pin.dart';
 import 'package:tracker_pwa/features/map/presentation/widgets/segmented_progress_bar.dart';
-import 'dart:async';
+
 
 class MapScreen extends ConsumerStatefulWidget {
   const MapScreen({super.key});
@@ -21,7 +21,7 @@ class _MapScreenState extends ConsumerState<MapScreen> with SingleTickerProvider
   late AnimationController _controller;
   final TransformationController _transformationController = TransformationController();
   Offset? _touchPosition;
-  Timer? _longPressTimer;
+
 
   // Track if we are currently long pressing
   bool _isLongPressing = false;
@@ -47,7 +47,7 @@ class _MapScreenState extends ConsumerState<MapScreen> with SingleTickerProvider
   void dispose() {
     _controller.dispose();
     _transformationController.dispose();
-    _longPressTimer?.cancel();
+
     super.dispose();
   }
 

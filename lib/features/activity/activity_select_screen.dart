@@ -63,7 +63,7 @@ class ActivitySelectScreen extends StatelessWidget {
                         child: BackdropFilter(
                           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                           child: Container(
-                            height: 52,
+                            height: 72,
                             decoration: BoxDecoration(
                               color: startColor.withValues(alpha: 0.08),
                               borderRadius: BorderRadius.circular(32),
@@ -203,8 +203,8 @@ class ActivitySelectScreen extends StatelessWidget {
                                                   width: double.infinity,
                                                   height: double.infinity,
                                                   colors: [
-                                                    Colors.white.withValues(alpha: 0.08),
-                                                    Colors.white.withValues(alpha: 0.03),
+                                                    Colors.white.withValues(alpha: 0.04),
+                                                    Colors.white.withValues(alpha: 0.015),
                                                   ],
                                                   borderRadius: organicBorder,
                                                   heroTag: 'activity_${activities[index]}_$index', // Unique tag for pop/morph
@@ -219,7 +219,7 @@ class ActivitySelectScreen extends StatelessWidget {
                                                   fontSize: 17.0, // Adapted for Syne font
                                                   enableBlur: false, // Optimize: No blur for grid items (background is already blurred)
                                                   onTap: () {
-                                                    // print('Selected: ${activities[index]}');
+
                                                     // TODO: Navigate to Details
                                                   },
                                                 )
